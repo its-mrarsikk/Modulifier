@@ -30,6 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl = new MetroFramework.Controls.MetroTabControl();
+            this.pipTab = new System.Windows.Forms.TabPage();
+            this.pip_packages_install = new MetroFramework.Controls.MetroButton();
+            this.pip_packages_title = new MetroFramework.Controls.MetroLabel();
+            this.pip_welcome2 = new MetroFramework.Controls.MetroLabel();
+            this.pip_welcome1 = new MetroFramework.Controls.MetroLabel();
+            this.pip_welcomePic = new System.Windows.Forms.PictureBox();
             this.mainMenuTab = new System.Windows.Forms.TabPage();
             this.mainmenu_contribute3 = new MetroFramework.Controls.MetroLink();
             this.mainmenu_verticalSeparator = new MetroFramework.Controls.MetroLabel();
@@ -42,7 +48,6 @@
             this.mainmenu_welcomeLabel2 = new MetroFramework.Controls.MetroLabel();
             this.mainmenu_welcomeLabel1 = new MetroFramework.Controls.MetroLabel();
             this.mainmenu_welcomePic = new System.Windows.Forms.PictureBox();
-            this.pipTab = new System.Windows.Forms.TabPage();
             this.logo = new System.Windows.Forms.PictureBox();
             this.name_1 = new MetroFramework.Controls.MetroLabel();
             this.name_2 = new MetroFramework.Controls.MetroLabel();
@@ -54,7 +59,14 @@
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pip_packages_download = new MetroFramework.Controls.MetroButton();
+            this.pip_packages_uninstall = new MetroFramework.Controls.MetroButton();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.pip_other_update = new MetroFramework.Controls.MetroButton();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.tabControl.SuspendLayout();
+            this.pipTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pip_welcomePic)).BeginInit();
             this.mainMenuTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainmenu_welcomePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -63,8 +75,8 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.mainMenuTab);
             this.tabControl.Controls.Add(this.pipTab);
+            this.tabControl.Controls.Add(this.mainMenuTab);
             this.tabControl.Location = new System.Drawing.Point(2, 73);
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Drawing.Point(6, 8);
@@ -73,6 +85,76 @@
             this.tabControl.TabIndex = 0;
             this.tabControl.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
+            // 
+            // pipTab
+            // 
+            this.pipTab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pipTab.Controls.Add(this.metroButton1);
+            this.pipTab.Controls.Add(this.pip_other_update);
+            this.pipTab.Controls.Add(this.metroLabel1);
+            this.pipTab.Controls.Add(this.pip_packages_uninstall);
+            this.pipTab.Controls.Add(this.pip_packages_download);
+            this.pipTab.Controls.Add(this.pip_packages_install);
+            this.pipTab.Controls.Add(this.pip_packages_title);
+            this.pipTab.Controls.Add(this.pip_welcome2);
+            this.pipTab.Controls.Add(this.pip_welcome1);
+            this.pipTab.Controls.Add(this.pip_welcomePic);
+            this.pipTab.Location = new System.Drawing.Point(4, 35);
+            this.pipTab.Name = "pipTab";
+            this.pipTab.Size = new System.Drawing.Size(639, 367);
+            this.pipTab.TabIndex = 1;
+            this.pipTab.Text = "Python PIP";
+            // 
+            // pip_packages_install
+            // 
+            this.pip_packages_install.Location = new System.Drawing.Point(150, 162);
+            this.pip_packages_install.Name = "pip_packages_install";
+            this.pip_packages_install.Size = new System.Drawing.Size(63, 23);
+            this.pip_packages_install.TabIndex = 4;
+            this.pip_packages_install.Text = "Install";
+            // 
+            // pip_packages_title
+            // 
+            this.pip_packages_title.AutoSize = true;
+            this.pip_packages_title.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.pip_packages_title.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.pip_packages_title.Location = new System.Drawing.Point(145, 136);
+            this.pip_packages_title.Name = "pip_packages_title";
+            this.pip_packages_title.Size = new System.Drawing.Size(84, 25);
+            this.pip_packages_title.TabIndex = 3;
+            this.pip_packages_title.Text = "Packages";
+            // 
+            // pip_welcome2
+            // 
+            this.pip_welcome2.AutoSize = true;
+            this.pip_welcome2.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.pip_welcome2.Location = new System.Drawing.Point(145, 50);
+            this.pip_welcome2.Name = "pip_welcome2";
+            this.pip_welcome2.Size = new System.Drawing.Size(439, 75);
+            this.pip_welcome2.TabIndex = 2;
+            this.pip_welcome2.Text = "You can install or delete Python packages, seek for other\r\npackages on PyPi and u" +
+    "pdate pip.\r\n";
+            // 
+            // pip_welcome1
+            // 
+            this.pip_welcome1.AutoSize = true;
+            this.pip_welcome1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.pip_welcome1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.pip_welcome1.Location = new System.Drawing.Point(145, 25);
+            this.pip_welcome1.Name = "pip_welcome1";
+            this.pip_welcome1.Size = new System.Drawing.Size(173, 25);
+            this.pip_welcome1.TabIndex = 1;
+            this.pip_welcome1.Text = "Python PIP Manager";
+            // 
+            // pip_welcomePic
+            // 
+            this.pip_welcomePic.Image = ((System.Drawing.Image)(resources.GetObject("pip_welcomePic.Image")));
+            this.pip_welcomePic.Location = new System.Drawing.Point(27, 25);
+            this.pip_welcomePic.Name = "pip_welcomePic";
+            this.pip_welcomePic.Size = new System.Drawing.Size(112, 106);
+            this.pip_welcomePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pip_welcomePic.TabIndex = 0;
+            this.pip_welcomePic.TabStop = false;
             // 
             // mainMenuTab
             // 
@@ -90,7 +172,7 @@
             this.mainMenuTab.Controls.Add(this.mainmenu_welcomePic);
             this.mainMenuTab.Location = new System.Drawing.Point(4, 35);
             this.mainMenuTab.Name = "mainMenuTab";
-            this.mainMenuTab.Size = new System.Drawing.Size(639, 367);
+            this.mainMenuTab.Size = new System.Drawing.Size(192, 61);
             this.mainMenuTab.TabIndex = 0;
             this.mainMenuTab.Text = "Main Menu";
             this.mainMenuTab.ToolTipText = "Main Menu";
@@ -229,15 +311,6 @@
             this.mainmenu_welcomePic.TabIndex = 0;
             this.mainmenu_welcomePic.TabStop = false;
             // 
-            // pipTab
-            // 
-            this.pipTab.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pipTab.Location = new System.Drawing.Point(4, 35);
-            this.pipTab.Name = "pipTab";
-            this.pipTab.Size = new System.Drawing.Size(192, 61);
-            this.pipTab.TabIndex = 1;
-            this.pipTab.Text = "Python PIP";
-            // 
             // logo
             // 
             this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -332,6 +405,49 @@
             this.aboutBoxToolStripMenuItem.Text = "About";
             this.aboutBoxToolStripMenuItem.Click += new System.EventHandler(this.aboutBoxToolStripMenuItem_Click);
             // 
+            // pip_packages_download
+            // 
+            this.pip_packages_download.Location = new System.Drawing.Point(219, 162);
+            this.pip_packages_download.Name = "pip_packages_download";
+            this.pip_packages_download.Size = new System.Drawing.Size(78, 23);
+            this.pip_packages_download.TabIndex = 5;
+            this.pip_packages_download.Text = "Download";
+            // 
+            // pip_packages_uninstall
+            // 
+            this.pip_packages_uninstall.Location = new System.Drawing.Point(303, 162);
+            this.pip_packages_uninstall.Name = "pip_packages_uninstall";
+            this.pip_packages_uninstall.Size = new System.Drawing.Size(78, 23);
+            this.pip_packages_uninstall.TabIndex = 6;
+            this.pip_packages_uninstall.Text = "Uninstall";
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel1.Location = new System.Drawing.Point(145, 227);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(57, 25);
+            this.metroLabel1.TabIndex = 7;
+            this.metroLabel1.Text = "Other";
+            // 
+            // pip_other_update
+            // 
+            this.pip_other_update.Location = new System.Drawing.Point(150, 255);
+            this.pip_other_update.Name = "pip_other_update";
+            this.pip_other_update.Size = new System.Drawing.Size(79, 23);
+            this.pip_other_update.TabIndex = 8;
+            this.pip_other_update.Text = "Update PIP";
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.Location = new System.Drawing.Point(235, 255);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(119, 23);
+            this.metroButton1.TabIndex = 9;
+            this.metroButton1.Text = "Other command...";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -351,6 +467,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modulifier Main Menu";
             this.tabControl.ResumeLayout(false);
+            this.pipTab.ResumeLayout(false);
+            this.pipTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pip_welcomePic)).EndInit();
             this.mainMenuTab.ResumeLayout(false);
             this.mainMenuTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainmenu_welcomePic)).EndInit();
@@ -389,5 +508,15 @@
         private MetroFramework.Controls.MetroLabel mainmenu_contribute1;
         private MetroFramework.Controls.MetroLink mainmenu_contribute3;
         private MetroFramework.Controls.MetroLabel mainmenu_verticalSeparator;
+        private PictureBox pip_welcomePic;
+        private MetroFramework.Controls.MetroLabel pip_welcome1;
+        private MetroFramework.Controls.MetroLabel pip_welcome2;
+        private MetroFramework.Controls.MetroButton pip_packages_install;
+        private MetroFramework.Controls.MetroLabel pip_packages_title;
+        private MetroFramework.Controls.MetroButton pip_packages_download;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton pip_other_update;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroButton pip_packages_uninstall;
     }
 }

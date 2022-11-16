@@ -5,6 +5,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.CodeDom;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace Modulifier
 {
@@ -29,7 +30,33 @@ namespace Modulifier
                     this.Text = "Modulifier Main Menu";
                     break;
                 case 1:
-                    this.Text = "Modulifier PIP Installer"; // pip tab selected
+                    this.Text = "Modulifier PIP Manager"; // pip tab selected
+
+                    Process? pip = Process.Start("pip", "-h");
+                    if (pip == null) // pip hasn't started
+                    {
+                        DialogResult pipinstallagreement = MessageBox.Show(this, "Your computer has no installed pip.\nWould you like to install pip?", "pip not installed!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                        if (pipinstallagreement == DialogResult.Yes)
+                        {
+                            Process? ensurepip = Process.Start("py", "-m ensurepip --upgrade");
+                            if (ensurepip == null) // py not installed
+                            {
+                                DialogResult pyinstalleragreement = MessageBox.Show(this, "ensurepip has failed to start\nLaunch Python installer to repair or install Python?", "ensurepip failure!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                                if (pyinstalleragreement == DialogResult.Yes)
+                                {
+                                    try
+                                    {
+                                        Process.Start("./etc/pyins3110.exe");
+                                    }
+                                    catch (Win32Exception exception)
+                                    {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     break;
             }
         }
@@ -43,5 +70,8 @@ namespace Modulifier
         private void mainmenu_issue2_Click(object sender, EventArgs e) => OpenUrl(@"https://github.com/its-mrarsikk/Modulifier/issues");
         private void mainmenu_contribute2_Click(object sender, EventArgs e) => OpenUrl(@"https://github.com/its-mrarsikk/Modulifier/fork");
         private void mainmenu_contribute3_Click(object sender, EventArgs e) => OpenUrl(@"https://github.com/its-mrarsikk/Modulifier/compare");
+
+        // pip
+
     }
 }
