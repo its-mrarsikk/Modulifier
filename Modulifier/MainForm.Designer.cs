@@ -31,6 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl = new MetroFramework.Controls.MetroTabControl();
             this.pipTab = new System.Windows.Forms.TabPage();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.pip_other_update = new MetroFramework.Controls.MetroButton();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.pip_packages_uninstall = new MetroFramework.Controls.MetroButton();
+            this.pip_packages_download = new MetroFramework.Controls.MetroButton();
             this.pip_packages_install = new MetroFramework.Controls.MetroButton();
             this.pip_packages_title = new MetroFramework.Controls.MetroLabel();
             this.pip_welcome2 = new MetroFramework.Controls.MetroLabel();
@@ -59,11 +64,9 @@
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pip_packages_download = new MetroFramework.Controls.MetroButton();
-            this.pip_packages_uninstall = new MetroFramework.Controls.MetroButton();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.pip_other_update = new MetroFramework.Controls.MetroButton();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl.SuspendLayout();
             this.pipTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pip_welcomePic)).BeginInit();
@@ -104,6 +107,49 @@
             this.pipTab.Size = new System.Drawing.Size(639, 367);
             this.pipTab.TabIndex = 1;
             this.pipTab.Text = "Python PIP";
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.Location = new System.Drawing.Point(235, 255);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(119, 23);
+            this.metroButton1.TabIndex = 9;
+            this.metroButton1.Text = "Other command...";
+            // 
+            // pip_other_update
+            // 
+            this.pip_other_update.Location = new System.Drawing.Point(150, 255);
+            this.pip_other_update.Name = "pip_other_update";
+            this.pip_other_update.Size = new System.Drawing.Size(79, 23);
+            this.pip_other_update.TabIndex = 8;
+            this.pip_other_update.Text = "Update PIP";
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel1.Location = new System.Drawing.Point(145, 227);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(57, 25);
+            this.metroLabel1.TabIndex = 7;
+            this.metroLabel1.Text = "Other";
+            // 
+            // pip_packages_uninstall
+            // 
+            this.pip_packages_uninstall.Location = new System.Drawing.Point(303, 162);
+            this.pip_packages_uninstall.Name = "pip_packages_uninstall";
+            this.pip_packages_uninstall.Size = new System.Drawing.Size(78, 23);
+            this.pip_packages_uninstall.TabIndex = 6;
+            this.pip_packages_uninstall.Text = "Uninstall";
+            // 
+            // pip_packages_download
+            // 
+            this.pip_packages_download.Location = new System.Drawing.Point(219, 162);
+            this.pip_packages_download.Name = "pip_packages_download";
+            this.pip_packages_download.Size = new System.Drawing.Size(78, 23);
+            this.pip_packages_download.TabIndex = 5;
+            this.pip_packages_download.Text = "Download";
             // 
             // pip_packages_install
             // 
@@ -348,7 +394,8 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.manageToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.debugToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -405,48 +452,29 @@
             this.aboutBoxToolStripMenuItem.Text = "About";
             this.aboutBoxToolStripMenuItem.Click += new System.EventHandler(this.aboutBoxToolStripMenuItem_Click);
             // 
-            // pip_packages_download
+            // debugToolStripMenuItem
             // 
-            this.pip_packages_download.Location = new System.Drawing.Point(219, 162);
-            this.pip_packages_download.Name = "pip_packages_download";
-            this.pip_packages_download.Size = new System.Drawing.Size(78, 23);
-            this.pip_packages_download.TabIndex = 5;
-            this.pip_packages_download.Text = "Download";
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openConsoleToolStripMenuItem,
+            this.writeToolStripMenuItem});
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.debugToolStripMenuItem.Text = "Debug";
             // 
-            // pip_packages_uninstall
+            // openConsoleToolStripMenuItem
             // 
-            this.pip_packages_uninstall.Location = new System.Drawing.Point(303, 162);
-            this.pip_packages_uninstall.Name = "pip_packages_uninstall";
-            this.pip_packages_uninstall.Size = new System.Drawing.Size(78, 23);
-            this.pip_packages_uninstall.TabIndex = 6;
-            this.pip_packages_uninstall.Text = "Uninstall";
+            this.openConsoleToolStripMenuItem.Name = "openConsoleToolStripMenuItem";
+            this.openConsoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openConsoleToolStripMenuItem.Text = "Open";
+            this.openConsoleToolStripMenuItem.Click += new System.EventHandler(this.openConsoleToolStripMenuItem_Click);
             // 
-            // metroLabel1
+            // writeToolStripMenuItem
             // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(145, 227);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(57, 25);
-            this.metroLabel1.TabIndex = 7;
-            this.metroLabel1.Text = "Other";
-            // 
-            // pip_other_update
-            // 
-            this.pip_other_update.Location = new System.Drawing.Point(150, 255);
-            this.pip_other_update.Name = "pip_other_update";
-            this.pip_other_update.Size = new System.Drawing.Size(79, 23);
-            this.pip_other_update.TabIndex = 8;
-            this.pip_other_update.Text = "Update PIP";
-            // 
-            // metroButton1
-            // 
-            this.metroButton1.Location = new System.Drawing.Point(235, 255);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(119, 23);
-            this.metroButton1.TabIndex = 9;
-            this.metroButton1.Text = "Other command...";
+            this.writeToolStripMenuItem.Enabled = false;
+            this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
+            this.writeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.writeToolStripMenuItem.Text = "Write";
+            this.writeToolStripMenuItem.Click += new System.EventHandler(this.writeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -466,6 +494,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modulifier Main Menu";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl.ResumeLayout(false);
             this.pipTab.ResumeLayout(false);
             this.pipTab.PerformLayout();
@@ -518,5 +547,8 @@
         private MetroFramework.Controls.MetroButton pip_other_update;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroButton pip_packages_uninstall;
+        private ToolStripMenuItem debugToolStripMenuItem;
+        private ToolStripMenuItem openConsoleToolStripMenuItem;
+        private ToolStripMenuItem writeToolStripMenuItem;
     }
 }

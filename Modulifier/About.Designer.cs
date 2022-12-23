@@ -101,7 +101,7 @@
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(316, 20);
             this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "Версия";
+            this.labelVersion.Text = "Version";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelCopyright
@@ -153,7 +153,7 @@
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&ОК";
             // 
-            // AboutBox1
+            // About
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -164,7 +164,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AboutBox1";
+            this.Name = "About";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

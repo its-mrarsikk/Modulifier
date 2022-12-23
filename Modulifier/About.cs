@@ -14,12 +14,12 @@ namespace Modulifier
         public About()
         {
             InitializeComponent();
-            this.Text = String.Format("О программе {0}", AssemblyTitle);
+            this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Версия {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = "A GUI tool to install packages using some managers (PIP, Node.js, etc.).";
+            this.textBoxDescription.Text = "A GUI wrapper for different package managers (PIP, Node.js, etc.).";
         }
 
         #region Методы доступа к атрибутам сборки

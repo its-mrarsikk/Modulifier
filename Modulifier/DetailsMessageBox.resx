@@ -1,0 +1,72 @@
+﻿<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="details.Text" xml:space="preserve">
+    <value>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus felis erat, tristique nec ornare at, eleifend non augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent et est sed tortor pulvinar eleifend vitae quis diam. Ut ut purus lectus. Mauris sit amet rhoncus erat. Maecenas ornare justo et elit lobortis finibus. Suspendisse potenti. Pellentesque hendrerit diam quis suscipit aliquam. Duis quis nunc pharetra, molestie metus non, suscipit orci. Quisque ultricies eu metus sit amet dignissim. Integer facilisis malesuada leo, quis ornare ante egestas in.
+
+Mauris ut sagittis turpis, suscipit imperdiet est. Aliquam erat volutpat. Donec pharetra lacinia lorem, malesuada iaculis turpis elementum id. Donec tincidunt vel nisi sed sodales. Suspendisse fermentum lectus in nisi bibendum ornare. Maecenas pulvinar augue dui, eu varius enim blandit ut. Nullam scelerisque felis ex, eget posuere orci sodales et. Donec sit amet neque tellus. Integer non tincidunt magna, id ullamcorper eros. Maecenas ut nisl ante. Quisque porttitor volutpat neque id faucibus. Nulla facilisi.
+
+Fusce lobortis nunc accumsan bibendum accumsan. Sed et blandit tortor, vel gravida elit. Nulla ut pretium leo, imperdiet tincidunt lacus. Phasellus sit amet ipsum tempus, ornare dolor vitae, consectetur odio. Nam varius pharetra ex eu congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc efficitur ac erat et elementum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris ornare blandit risus, a tincidunt lacus. Curabitur auctor augue quis dignissim fringilla. Morbi non ligula et turpis lobortis tempor sed nec quam. Curabitur id semper sapien. Fusce convallis ante in risus euismod finibus. Nullam ultrices ullamcorper purus, ac lobortis risus blandit id. Donec lorem nulla, dictum semper diam vel, vestibulum auctor ipsum. Proin sed nisl lectus.
+
+Curabitur quis mattis purus. Donec at accumsan lectus. Praesent lacinia ex nunc, id condimentum dolor aliquam ac. Donec nec eros tristique, gravida dui sed, gravida augue. Etiam eu viverra leo. Integer tincidunt et sem a imperdiet. Sed ornare odio ac nisl blandit tempor. Proin at nisi a nisi sodales malesuada.
+
+Nullam tempus libero maximus nisl ultrices, in tristique purus elementum. Vestibulum leo ipsum, interdum in felis in, blandit elementum quam. Morbi tempus elit a cursus porta. Morbi vel eros eget felis accumsan varius. Sed ac iaculis arcu. Nam cursus urna ac arcu blandit feugiat. Duis vel nulla vel sem viverra convallis pellentesque ac massa. Donec orci urna, viverra bibendum cursus vel, tincidunt in nulla. Praesent varius suscipit volutpat. In elementum semper dapibus.</value>
+  </data>
+</root>

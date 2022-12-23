@@ -2,21 +2,24 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFramework>net6.0-windows10.0.22621.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationIcon>assets\logo.ico</ApplicationIcon>
 		<SignAssembly>False</SignAssembly>
-		<AssemblyVersion>0.2.1.0</AssemblyVersion>
+		<AssemblyVersion> </AssemblyVersion>
+		<Company>its-mrarsikk</Company>
+		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
+		<AssemblyVersion>0.7.0</AssemblyVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <WarningLevel>7</WarningLevel>
+		<WarningLevel>7</WarningLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <WarningLevel>7</WarningLevel>
+		<WarningLevel>7</WarningLevel>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,8 +33,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Content Include="warn.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="MetroFramework" Version="1.2.0.3" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -47,6 +54,10 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Resources\" />
 	</ItemGroup>
 
 </Project>
