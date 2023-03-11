@@ -1,14 +1,10 @@
 using System.Diagnostics;
-using System.ComponentModel;
-using System;
+using System.Reflection;
 
 namespace Modulifier
 {
     public partial class MainForm : Form
     {
-
-        private bool debug = false;
-
         public MainForm()
         {
             InitializeComponent();
@@ -22,49 +18,58 @@ namespace Modulifier
             switch (tab)
             {
                 case 0: // Main menu tab selected
-                    this.Text = "Modulifier Main Menu";
+                    Text = "Modulifier Main Menu";
                     break;
-                case 1:
-                    this.Text = "Modulifier PIP Manager"; // pip tab selected
 
+                case 1:
+                    Text = "Modulifier PIP Manager"; // pip tab selected
                     // pip/py check
-                    if (!Utility.ExistsOnPath("pip")) // pip not installed\not in path
+                    if (!Utility.ExistsOnPath("python.exe")) // python is not installed or not in path.
                     {
                         tabControl.SelectedIndex = 0;
 
-                        DialogResult pipinstallagreement = MessageBox.Show(this, "Your computer has no installed pip, or it's not in PATH.\nWould you like to install pip?", "pip not found!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-
-                        if (pipinstallagreement == DialogResult.Yes)
+                        DialogResult pyinstalldialogresult = MessageBox.Show(this, "Python not found: it's not installed, or not in PATH or App Paths. Launch Python installer?", "Python not found!",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                        switch (pyinstalldialogresult)
                         {
-                            if (!Utility.ExistsOnPath("py")) // python not installed\not in path
-                            {
-                                DialogResult pyinstalleragreement = MessageBox.Show(this, "Your computer has no installed Python, or it's not in PATH.\nLaunch Python installer to install Python?", "Python not found!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-
-                                if (pyinstalleragreement == DialogResult.Yes)
+                            case DialogResult.Yes:
+                                string installer = "./etc/" +
+                                    Utility.GetHighestVersion("./etc", ".exe", new string[] { "pyins" }, Array.Empty<string>());
+                                try
                                 {
-                                    if (!File.Exists("./etc/pyins3110.exe")) // installer not in place
-                                    {
-                                        DetailsMessageBox.ShowDialog(this, $"Bundled Python Installer is renamed or deleted", $"Bundled Python Installer couldn't start. The file was renamed or deleted.\nSee details for further information.",
-    $@"If renamed, rename it back to ""pyins3110.exe"". If deleted:
-
-Get a Python 3.11.0 installer at www.python.org/downloads, or a fresh Modulifier at www.github.com/its-mrarsikk/Modulifier/releases.
-
-If you've downloaded Python manually, name the installer ""pyins3110.exe"" and put into (app folder)/etc/.", new("./assets/warn.png"));
-                                        return;
-                                    }
-
-                                    Process.Start("./etc/pyins3110.exe");
-                                    return;
+                                    Process.Start(new ProcessStartInfo { FileName = installer, UseShellExecute = true });
                                 }
-                                else return;
-                            }
+                                catch (Win32Exception ex)
+                                {
+                                    DetailsMessageBox.ShowDialog(this, "Error launching installer",
+                                        "Seems like there isn't a Python installer. Try installing Python manually.", Utility.DetailsFromException(ex, "Try installing Python manually."), new("./assets/warn.png"));
+                                    throw;
+                                }
+                                break;
 
-                            Process.Start("py", "-m ensurepip --upgrade");
-                            return;
+                            case DialogResult.No:
+                                return;
                         }
-                        else return;
                     }
+                    else // python is there, may continue
+                    {
+                        if (!Utility.ExistsOnPath("pip"))
+                        {
+                            tabControl.SelectedIndex = 0;
 
+                            DialogResult pipinstalldialogresult = MessageBox.Show(this, "PIP not found: it's not installed, or not in PATH or App Paths. Launch PIP installer?", "PIP not found!",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                            switch (pipinstalldialogresult)
+                            {
+                                case DialogResult.Yes:
+                                    Process.Start(new ProcessStartInfo { FileName = "python.exe", Arguments = "-m ensurepip", UseShellExecute = true });
+                                    break;
+
+                                case DialogResult.No:
+                                    return;
+                            }
+                        }
+                    }
                     break;
             }
         }
@@ -74,50 +79,69 @@ If you've downloaded Python manually, name the installer ""pyins3110.exe"" and p
             //ConsoleWindow.StartConsole();
             // Process.Start(new ProcessStartInfo("title", "Console Window"));
             //ConsoleWindow.LogLine("Hello World!");
-
-        }
-
-        // menu strip
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
-        private void aboutBoxToolStripMenuItem_Click(object sender, EventArgs e) => new About().ShowDialog(this);
-        private void openConsoleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConsoleWindow.StartConsole("Modulifier debug console\n[Version 0.7.0, by its-mrarsikk]");
-            writeToolStripMenuItem.Enabled = true;
-            openConsoleToolStripMenuItem.Enabled = false;
-        }
-        private void writeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConsoleWindow.ReadLine();
+            //MessageBox.Show(this, "Python not found: it's not installed, or not in PATH or App Paths. Launch Python installer?", "Python not found!",
+            //MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+            Utility.Console.WriteLine("Hello, world!");
         }
 
         // main menu
         private void mainmenu_releases2_Click(object sender, EventArgs e) =>
             Utility.OpenUrl(@"https://github.com/its-mrarsikk/Modulifier/releases");
+
         private void mainmenu_issue2_Click(object sender, EventArgs e) =>
             Utility.OpenUrl(@"https://github.com/its-mrarsikk/Modulifier/issues");
+
         private void mainmenu_contribute2_Click(object sender, EventArgs e) =>
             Utility.OpenUrl(@"https://github.com/its-mrarsikk/Modulifier/fork");
+
         private void mainmenu_contribute3_Click(object sender, EventArgs e) =>
             Utility.OpenUrl(@"https://github.com/its-mrarsikk/Modulifier/compare");
 
-        private void metroButton1_Click(object sender, EventArgs e)
+        // menu strip
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
+
+        private void aboutBoxToolStripMenuItem_Click(object sender, EventArgs e) => new About().ShowDialog(this);
+
+        private void restartWithDebugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConsoleWindow.Log(">");
-            var s = ConsoleWindow.ReadLine();
-            foreach (Control ctrl in Controls)
+#pragma warning disable CS8602 // –азыменование веро€тной пустой ссылки.
+            string location = Environment.ProcessPath
+                // removing prefixes
+                .Replace("file://", string.Empty)
+                .Replace("\\\\.\\", string.Empty)
+                .Replace("\\\\?\\", string.Empty);
+#pragma warning restore CS8602 // –азыменование веро€тной пустой ссылки.
+
+            if (string.IsNullOrWhiteSpace(location))
             {
-                ctrl.Text = s;
+                DetailsMessageBox.Show(this, "Failed to restart", "Location of the executable file couldn't be found.\nPlease look into the details for error details and instructions.",
+                    @"At Modulifier.MainForm.restartWithDebugToolStripMenuItem_Click:106-110, Assembly.GetEntryAssembly()?.Location returned an empty string.
+
+--- INSTRUCTIONS ---
+
+To restart Modulifier in Debug mode manually, follow these steps:
+1. Exit Modulifier.
+2. Open CMD or PS.
+3. Navigate to the Modulifier install directory.
+4. Execute the following command:
+	Modulifier.exe -d
+	OR
+	Modulifier.exe --debug
+5. After these steps, Modulifier will be started with Debug.", new("./assets/warn.png"));
+                return;
+            }
+
+            Application.Exit();
+            try
+            {
+                Process.Start(new ProcessStartInfo { FileName = location, Arguments = "--debug", UseShellExecute = true });
+            }
+            catch (Win32Exception ex)
+            {
+                DetailsMessageBox.Show(this, "Failed to restart", "Failed to start the application.\nPlease look into the details for error details and instructions.",
+                    Utility.DetailsFromException(ex, Utility.DEFAULT_EXCEPTION_INSTRUCTION), new("./assets/warn.png"));
+                return;
             }
         }
-
-
-
-
-
-
-
-        // pip
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
 
 namespace Modulifier
 {
@@ -9,6 +7,11 @@ namespace Modulifier
     /// </summary>
     public partial class DetailsMessageBox : Form
     {
+        public string Caption { get => Text; set => Text = value; }
+        public string Body { get => msgText.Text; set => msgText.Text = value; }
+        public Bitmap MessageIcon { get => (Bitmap)icon.Image; set => icon.Image = value; }
+        public string Details { get => details.Text; set => details.Text = value; }
+
         /// <summary>
         /// Creates an instance of DetailsMessageBox with the specified owner and contents.
         /// </summary>
@@ -17,7 +20,7 @@ namespace Modulifier
         /// <param name="text">Text, shown in the main box.</param>
         /// <param name="details">Text, shown in the details box.</param>
         /// <param name="icon">Icon, shown in the main box.</param>
-        public DetailsMessageBox(IWin32Window owner, string caption, string text, string details, Bitmap icon)
+        public DetailsMessageBox(IWin32Window owner, string caption, string text, string details, Bitmap? icon = null)
         {
             InitializeComponent();
 
@@ -120,22 +123,22 @@ namespace Modulifier
         /// <summary>
         /// Fired when the window is expanded.
         /// </summary>
-        public event EventHandler DetailsShown;
+        public event EventHandler? DetailsShown;
 
         /// <summary>
         /// Fired when the window is shrinked.
         /// </summary>
-        public event EventHandler DetailsHidden;
+        public event EventHandler? DetailsHidden;
 
         /// <summary>
         /// Fired when OK clicked.
         /// </summary>
-        public event EventHandler OKClick;
+        public event EventHandler? OKClick;
 
         /// <summary>
         /// Fired when Quit clicked.
         /// </summary>
-        public event EventHandler QuitClick;
+        public event EventHandler? QuitClick;
 
 
         // PRIVATE

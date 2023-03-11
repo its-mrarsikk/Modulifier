@@ -8,32 +8,30 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationIcon>assets\logo.ico</ApplicationIcon>
 		<SignAssembly>False</SignAssembly>
-		<AssemblyVersion> </AssemblyVersion>
 		<Company>its-mrarsikk</Company>
-		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion>10.0.22621.0</SupportedOSPlatformVersion>
 		<AssemblyVersion>0.7.0</AssemblyVersion>
+		<StartupObject>Modulifier.Program</StartupObject>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<WarningLevel>7</WarningLevel>
+		<NoWarn>1701;1702;NU1701</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<WarningLevel>7</WarningLevel>
+		<NoWarn>1701;1702;NU1701</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="assets\*.ico; assets\*.png">
+		<Content Include="assets\*.ico;assets\*.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 
 		<Content Include="etc/*.exe">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Include="warn.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -57,7 +55,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Resources\" />
+	  <Using Include="System.ComponentModel" />
 	</ItemGroup>
-
 </Project>
