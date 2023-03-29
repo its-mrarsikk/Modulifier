@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using System.Reflection;
+using System.Drawing.Imaging;
 
 namespace Modulifier
 {
@@ -7,6 +7,7 @@ namespace Modulifier
     {
         public MainForm()
         {
+            Console.WriteLine("-- Application Init --\nInitializing components...");
             InitializeComponent();
         }
 
@@ -27,7 +28,6 @@ namespace Modulifier
                     if (!Utility.ExistsOnPath("python.exe")) // python is not installed or not in path.
                     {
                         tabControl.SelectedIndex = 0;
-
                         DialogResult pyinstalldialogresult = MessageBox.Show(this, "Python not found: it's not installed, or not in PATH or App Paths. Launch Python installer?", "Python not found!",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                         switch (pyinstalldialogresult)
@@ -42,7 +42,7 @@ namespace Modulifier
                                 catch (Win32Exception ex)
                                 {
                                     DetailsMessageBox.ShowDialog(this, "Error launching installer",
-                                        "Seems like there isn't a Python installer. Try installing Python manually.", Utility.DetailsFromException(ex, "Try installing Python manually."), new("./assets/warn.png"));
+                                        "Seems like there isn't a Python installer. Try installing Python manually.", Utility.DetailsFromException(ex, "Try installing Python manually."), Utility.GetFromAssetsOrEmpty("warn"));
                                     throw;
                                 }
                                 break;
@@ -53,7 +53,16 @@ namespace Modulifier
                     }
                     else // python is there, may continue
                     {
-                        if (!Utility.ExistsOnPath("pip"))
+                        Button[] buttons =
+                        {
+                            pip_packages_install,
+                            pip_packages_download,
+                            pip_packages_uninstall,
+                            pip_other_update,
+                            pip_other_cmd
+                        };
+
+                        if (!Utility.ExistsOnPath("pip", true))
                         {
                             tabControl.SelectedIndex = 0;
 
@@ -62,13 +71,14 @@ namespace Modulifier
                             switch (pipinstalldialogresult)
                             {
                                 case DialogResult.Yes:
-                                    Process.Start(new ProcessStartInfo { FileName = "python.exe", Arguments = "-m ensurepip", UseShellExecute = true });
+                                    Process.Start(new ProcessStartInfo { FileName = "python.exe", Arguments = "-m ensurepip", UseShellExecute = false });
                                     break;
 
                                 case DialogResult.No:
                                     return;
                             }
                         }
+                        else foreach (var button in buttons) { button.Enabled = true; }
                     }
                     break;
             }
@@ -76,14 +86,15 @@ namespace Modulifier
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //ConsoleWindow.StartConsole();
-            // Process.Start(new ProcessStartInfo("title", "Console Window"));
-            //ConsoleWindow.LogLine("Hello World!");
-            //MessageBox.Show(this, "Python not found: it's not installed, or not in PATH or App Paths. Launch Python installer?", "Python not found!",
-            //MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-            Utility.Console.WriteLine("Hello, world!");
+            // some tests
+            new PipInstall().Show();
+            // MessageBox.Show(this, Logger.GetSystemInfo());
+            // actual behaviour
+            Console.WriteLine("Form loaded.");
+            Console.WriteLine("\n-- Runtime --");
         }
 
+#pragma warning disable IDE1006
         // main menu
         private void mainmenu_releases2_Click(object sender, EventArgs e) =>
             Utility.OpenUrl(@"https://github.com/its-mrarsikk/Modulifier/releases");
@@ -143,5 +154,14 @@ To restart Modulifier in Debug mode manually, follow these steps:
                 return;
             }
         }
+
+        // pip
+        private void pip_packages_install_Click(object sender, EventArgs e)
+        {
+            // new PipInstall().Show();
+            // ^ this one is commented coz i still test it
+            // so, todo: finish pipinstall and uncomment this.
+        }
+#pragma warning restore IDE1006
     }
 }

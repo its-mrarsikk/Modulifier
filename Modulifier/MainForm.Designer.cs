@@ -30,6 +30,17 @@
         {
             ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
             tabControl = new MetroFramework.Controls.MetroTabControl();
+            pipTab = new TabPage();
+            pip_other_cmd = new MetroFramework.Controls.MetroButton();
+            pip_other_update = new MetroFramework.Controls.MetroButton();
+            pip_other_title = new MetroFramework.Controls.MetroLabel();
+            pip_packages_uninstall = new MetroFramework.Controls.MetroButton();
+            pip_packages_download = new MetroFramework.Controls.MetroButton();
+            pip_packages_install = new MetroFramework.Controls.MetroButton();
+            pip_packages_title = new MetroFramework.Controls.MetroLabel();
+            pip_welcome2 = new MetroFramework.Controls.MetroLabel();
+            pip_welcome1 = new MetroFramework.Controls.MetroLabel();
+            pip_welcomePic = new PictureBox();
             mainMenuTab = new TabPage();
             mainmenu_contribute3 = new MetroFramework.Controls.MetroLink();
             mainmenu_verticalSeparator = new MetroFramework.Controls.MetroLabel();
@@ -42,17 +53,6 @@
             mainmenu_welcomeLabel2 = new MetroFramework.Controls.MetroLabel();
             mainmenu_welcomeLabel1 = new MetroFramework.Controls.MetroLabel();
             mainmenu_welcomePic = new PictureBox();
-            pipTab = new TabPage();
-            metroButton1 = new MetroFramework.Controls.MetroButton();
-            pip_other_update = new MetroFramework.Controls.MetroButton();
-            metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            pip_packages_uninstall = new MetroFramework.Controls.MetroButton();
-            pip_packages_download = new MetroFramework.Controls.MetroButton();
-            pip_packages_install = new MetroFramework.Controls.MetroButton();
-            pip_packages_title = new MetroFramework.Controls.MetroLabel();
-            pip_welcome2 = new MetroFramework.Controls.MetroLabel();
-            pip_welcome1 = new MetroFramework.Controls.MetroLabel();
-            pip_welcomePic = new PictureBox();
             logo = new PictureBox();
             name_1 = new MetroFramework.Controls.MetroLabel();
             name_2 = new MetroFramework.Controls.MetroLabel();
@@ -66,26 +66,145 @@
             aboutToolStripMenuItem = new ToolStripMenuItem();
             aboutBoxToolStripMenuItem = new ToolStripMenuItem();
             tabControl.SuspendLayout();
-            mainMenuTab.SuspendLayout();
-            ((ISupportInitialize)mainmenu_welcomePic).BeginInit();
             pipTab.SuspendLayout();
             ((ISupportInitialize)pip_welcomePic).BeginInit();
+            mainMenuTab.SuspendLayout();
+            ((ISupportInitialize)mainmenu_welcomePic).BeginInit();
             ((ISupportInitialize)logo).BeginInit();
             menuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl
             // 
-            tabControl.Controls.Add(mainMenuTab);
             tabControl.Controls.Add(pipTab);
+            tabControl.Controls.Add(mainMenuTab);
             tabControl.Location = new Point(2, 73);
             tabControl.Name = "tabControl";
             tabControl.Padding = new Point(6, 8);
             tabControl.SelectedIndex = 0;
             tabControl.Size = new Size(647, 406);
+            tabControl.SizeMode = TabSizeMode.FillToRight;
             tabControl.TabIndex = 0;
             tabControl.Theme = MetroFramework.MetroThemeStyle.Light;
             tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
+            // 
+            // pipTab
+            // 
+            pipTab.BackColor = SystemColors.ButtonHighlight;
+            pipTab.Controls.Add(pip_other_cmd);
+            pipTab.Controls.Add(pip_other_update);
+            pipTab.Controls.Add(pip_other_title);
+            pipTab.Controls.Add(pip_packages_uninstall);
+            pipTab.Controls.Add(pip_packages_download);
+            pipTab.Controls.Add(pip_packages_install);
+            pipTab.Controls.Add(pip_packages_title);
+            pipTab.Controls.Add(pip_welcome2);
+            pipTab.Controls.Add(pip_welcome1);
+            pipTab.Controls.Add(pip_welcomePic);
+            pipTab.Location = new Point(4, 35);
+            pipTab.Name = "pipTab";
+            pipTab.Size = new Size(639, 367);
+            pipTab.TabIndex = 1;
+            pipTab.Text = "Python PIP";
+            // 
+            // pip_other_cmd
+            // 
+            pip_other_cmd.Enabled = false;
+            pip_other_cmd.Location = new Point(235, 255);
+            pip_other_cmd.Name = "pip_other_cmd";
+            pip_other_cmd.Size = new Size(119, 23);
+            pip_other_cmd.TabIndex = 9;
+            pip_other_cmd.Text = "Other command...";
+            // 
+            // pip_other_update
+            // 
+            pip_other_update.Enabled = false;
+            pip_other_update.Location = new Point(150, 255);
+            pip_other_update.Name = "pip_other_update";
+            pip_other_update.Size = new Size(79, 23);
+            pip_other_update.TabIndex = 8;
+            pip_other_update.Text = "Update PIP";
+            // 
+            // pip_other_title
+            // 
+            pip_other_title.AutoSize = true;
+            pip_other_title.FontSize = MetroFramework.MetroLabelSize.Tall;
+            pip_other_title.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            pip_other_title.Location = new Point(145, 227);
+            pip_other_title.Name = "pip_other_title";
+            pip_other_title.Size = new Size(57, 25);
+            pip_other_title.TabIndex = 7;
+            pip_other_title.Text = "Other";
+            // 
+            // pip_packages_uninstall
+            // 
+            pip_packages_uninstall.Enabled = false;
+            pip_packages_uninstall.Location = new Point(303, 162);
+            pip_packages_uninstall.Name = "pip_packages_uninstall";
+            pip_packages_uninstall.Size = new Size(78, 23);
+            pip_packages_uninstall.TabIndex = 6;
+            pip_packages_uninstall.Text = "Uninstall";
+            // 
+            // pip_packages_download
+            // 
+            pip_packages_download.Enabled = false;
+            pip_packages_download.Location = new Point(219, 162);
+            pip_packages_download.Name = "pip_packages_download";
+            pip_packages_download.Size = new Size(78, 23);
+            pip_packages_download.TabIndex = 5;
+            pip_packages_download.Text = "Download";
+            // 
+            // pip_packages_install
+            // 
+            pip_packages_install.Enabled = false;
+            pip_packages_install.Location = new Point(150, 162);
+            pip_packages_install.Name = "pip_packages_install";
+            pip_packages_install.Size = new Size(63, 23);
+            pip_packages_install.TabIndex = 4;
+            pip_packages_install.Text = "Install";
+            pip_packages_install.Click += pip_packages_install_Click;
+            // 
+            // pip_packages_title
+            // 
+            pip_packages_title.AutoSize = true;
+            pip_packages_title.FontSize = MetroFramework.MetroLabelSize.Tall;
+            pip_packages_title.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            pip_packages_title.Location = new Point(145, 136);
+            pip_packages_title.Name = "pip_packages_title";
+            pip_packages_title.Size = new Size(84, 25);
+            pip_packages_title.TabIndex = 3;
+            pip_packages_title.Text = "Packages";
+            // 
+            // pip_welcome2
+            // 
+            pip_welcome2.AutoSize = true;
+            pip_welcome2.FontSize = MetroFramework.MetroLabelSize.Tall;
+            pip_welcome2.Location = new Point(145, 50);
+            pip_welcome2.Name = "pip_welcome2";
+            pip_welcome2.Size = new Size(439, 75);
+            pip_welcome2.TabIndex = 2;
+            pip_welcome2.Text = "You can install or delete Python packages, seek for other\r\npackages on PyPi and update pip.\r\n";
+            // 
+            // pip_welcome1
+            // 
+            pip_welcome1.AutoSize = true;
+            pip_welcome1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            pip_welcome1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            pip_welcome1.Location = new Point(145, 25);
+            pip_welcome1.Name = "pip_welcome1";
+            pip_welcome1.Size = new Size(173, 25);
+            pip_welcome1.TabIndex = 1;
+            pip_welcome1.Text = "Python PIP Manager";
+            // 
+            // pip_welcomePic
+            // 
+            pip_welcomePic.Image = (Image)resources.GetObject("pip_welcomePic.Image");
+            pip_welcomePic.Location = new Point(27, 25);
+            pip_welcomePic.Name = "pip_welcomePic";
+            pip_welcomePic.Size = new Size(112, 106);
+            pip_welcomePic.SizeMode = PictureBoxSizeMode.StretchImage;
+            pip_welcomePic.TabIndex = 0;
+            pip_welcomePic.TabStop = false;
             // 
             // mainMenuTab
             // 
@@ -240,118 +359,6 @@
             mainmenu_welcomePic.TabIndex = 0;
             mainmenu_welcomePic.TabStop = false;
             // 
-            // pipTab
-            // 
-            pipTab.BackColor = SystemColors.ButtonHighlight;
-            pipTab.Controls.Add(metroButton1);
-            pipTab.Controls.Add(pip_other_update);
-            pipTab.Controls.Add(metroLabel1);
-            pipTab.Controls.Add(pip_packages_uninstall);
-            pipTab.Controls.Add(pip_packages_download);
-            pipTab.Controls.Add(pip_packages_install);
-            pipTab.Controls.Add(pip_packages_title);
-            pipTab.Controls.Add(pip_welcome2);
-            pipTab.Controls.Add(pip_welcome1);
-            pipTab.Controls.Add(pip_welcomePic);
-            pipTab.Location = new Point(4, 35);
-            pipTab.Name = "pipTab";
-            pipTab.Size = new Size(192, 61);
-            pipTab.TabIndex = 1;
-            pipTab.Text = "Python PIP";
-            // 
-            // metroButton1
-            // 
-            metroButton1.Location = new Point(235, 255);
-            metroButton1.Name = "metroButton1";
-            metroButton1.Size = new Size(119, 23);
-            metroButton1.TabIndex = 9;
-            metroButton1.Text = "Other command...";
-            // 
-            // pip_other_update
-            // 
-            pip_other_update.Location = new Point(150, 255);
-            pip_other_update.Name = "pip_other_update";
-            pip_other_update.Size = new Size(79, 23);
-            pip_other_update.TabIndex = 8;
-            pip_other_update.Text = "Update PIP";
-            // 
-            // metroLabel1
-            // 
-            metroLabel1.AutoSize = true;
-            metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            metroLabel1.Location = new Point(145, 227);
-            metroLabel1.Name = "metroLabel1";
-            metroLabel1.Size = new Size(57, 25);
-            metroLabel1.TabIndex = 7;
-            metroLabel1.Text = "Other";
-            // 
-            // pip_packages_uninstall
-            // 
-            pip_packages_uninstall.Location = new Point(303, 162);
-            pip_packages_uninstall.Name = "pip_packages_uninstall";
-            pip_packages_uninstall.Size = new Size(78, 23);
-            pip_packages_uninstall.TabIndex = 6;
-            pip_packages_uninstall.Text = "Uninstall";
-            // 
-            // pip_packages_download
-            // 
-            pip_packages_download.Location = new Point(219, 162);
-            pip_packages_download.Name = "pip_packages_download";
-            pip_packages_download.Size = new Size(78, 23);
-            pip_packages_download.TabIndex = 5;
-            pip_packages_download.Text = "Download";
-            // 
-            // pip_packages_install
-            // 
-            pip_packages_install.Location = new Point(150, 162);
-            pip_packages_install.Name = "pip_packages_install";
-            pip_packages_install.Size = new Size(63, 23);
-            pip_packages_install.TabIndex = 4;
-            pip_packages_install.Text = "Install";
-            // 
-            // pip_packages_title
-            // 
-            pip_packages_title.AutoSize = true;
-            pip_packages_title.FontSize = MetroFramework.MetroLabelSize.Tall;
-            pip_packages_title.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            pip_packages_title.Location = new Point(145, 136);
-            pip_packages_title.Name = "pip_packages_title";
-            pip_packages_title.Size = new Size(84, 25);
-            pip_packages_title.TabIndex = 3;
-            pip_packages_title.Text = "Packages";
-            // 
-            // pip_welcome2
-            // 
-            pip_welcome2.AutoSize = true;
-            pip_welcome2.FontSize = MetroFramework.MetroLabelSize.Tall;
-            pip_welcome2.Location = new Point(145, 50);
-            pip_welcome2.Name = "pip_welcome2";
-            pip_welcome2.Size = new Size(439, 75);
-            pip_welcome2.TabIndex = 2;
-            pip_welcome2.Text = "You can install or delete Python packages, seek for other\r\npackages on PyPi and update pip.\r\n";
-            // 
-            // pip_welcome1
-            // 
-            pip_welcome1.AutoSize = true;
-            pip_welcome1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            pip_welcome1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            pip_welcome1.Location = new Point(145, 25);
-            pip_welcome1.Name = "pip_welcome1";
-            pip_welcome1.Size = new Size(173, 25);
-            pip_welcome1.TabIndex = 1;
-            pip_welcome1.Text = "Python PIP Manager";
-            // 
-            // pip_welcomePic
-            // 
-            pip_welcomePic.Image = (Image)resources.GetObject("pip_welcomePic.Image");
-            pip_welcomePic.Location = new Point(27, 25);
-            pip_welcomePic.Name = "pip_welcomePic";
-            pip_welcomePic.Size = new Size(112, 106);
-            pip_welcomePic.SizeMode = PictureBoxSizeMode.StretchImage;
-            pip_welcomePic.TabIndex = 0;
-            pip_welcomePic.TabStop = false;
-            // 
             // logo
             // 
             logo.BackgroundImageLayout = ImageLayout.Stretch;
@@ -404,25 +411,25 @@
             // preferencesToolStripMenuItem
             // 
             preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            preferencesToolStripMenuItem.Size = new Size(180, 22);
+            preferencesToolStripMenuItem.Size = new Size(174, 22);
             preferencesToolStripMenuItem.Text = "Preferences";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(171, 6);
             // 
             // restartWithDebugToolStripMenuItem
             // 
             restartWithDebugToolStripMenuItem.Name = "restartWithDebugToolStripMenuItem";
-            restartWithDebugToolStripMenuItem.Size = new Size(180, 22);
+            restartWithDebugToolStripMenuItem.Size = new Size(174, 22);
             restartWithDebugToolStripMenuItem.Text = "Restart with Debug";
             restartWithDebugToolStripMenuItem.Click += restartWithDebugToolStripMenuItem_Click;
             // 
             // quitToolStripMenuItem
             // 
             quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            quitToolStripMenuItem.Size = new Size(180, 22);
+            quitToolStripMenuItem.Size = new Size(174, 22);
             quitToolStripMenuItem.Text = "Quit";
             quitToolStripMenuItem.Click += quitToolStripMenuItem_Click;
             // 
@@ -466,12 +473,12 @@
             Text = "Modulifier Main Menu";
             Load += MainForm_Load;
             tabControl.ResumeLayout(false);
-            mainMenuTab.ResumeLayout(false);
-            mainMenuTab.PerformLayout();
-            ((ISupportInitialize)mainmenu_welcomePic).EndInit();
             pipTab.ResumeLayout(false);
             pipTab.PerformLayout();
             ((ISupportInitialize)pip_welcomePic).EndInit();
+            mainMenuTab.ResumeLayout(false);
+            mainMenuTab.PerformLayout();
+            ((ISupportInitialize)mainmenu_welcomePic).EndInit();
             ((ISupportInitialize)logo).EndInit();
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
@@ -512,9 +519,9 @@
         private MetroFramework.Controls.MetroButton pip_packages_install;
         private MetroFramework.Controls.MetroLabel pip_packages_title;
         private MetroFramework.Controls.MetroButton pip_packages_download;
-        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton pip_other_cmd;
         private MetroFramework.Controls.MetroButton pip_other_update;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel pip_other_title;
         private MetroFramework.Controls.MetroButton pip_packages_uninstall;
         private ToolStripMenuItem restartWithDebugToolStripMenuItem;
     }

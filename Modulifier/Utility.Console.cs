@@ -4,6 +4,7 @@
     {
         internal static class Console
         {
+
             public static bool Write(object message)
             {
                 if (!ConsoleControl.ConsoleOpened) return false;
@@ -11,7 +12,7 @@
                 return true;
             }
 
-            public static bool WriteLine(object message) => Write(message.ToString() + '\n');
+            public static bool WriteLine(object? message = null) => Write(((message?.ToString()) ?? "") + "\n");
         }
     }
 }

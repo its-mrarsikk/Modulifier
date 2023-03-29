@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿global using Console = Modulifier.Utility.Console;
+using System.Runtime.InteropServices;
 
 namespace Modulifier
 {
@@ -70,18 +71,19 @@ namespace Modulifier
             /// <returns>Returns a Boolean value indicating whether the control event has been handled.</returns>
             static bool ConsoleCtrlHandler(int ctrlType)
             {
-                int err = FreeConsole();
-                if (err == 0)
+                switch (ctrlType)
                 {
-                    DetailsMessageBox.Show(MainForm.ActiveForm,
-                        "Failed to detach console",
-                        "Failed to detach the console.",
-                        $"* HRESULT\n{err}\n\n--- INSTRUCTIONS ---\n\nRestart the app normally to remove the console.\n\n${DEFAULT_EXCEPTION_INSTRUCTION}",
-                        new("./assets/warn.png"));
-                    return false;
+                    case 0: // CTRL_C_EVENT
+                    case 1: // CTRL_BREAK_EVENT
+                    case 2: // CTRL_CLOSE_EVENT
+                        Console.WriteLine($"<CTRL {ctrlType}: EXIT>");
+                        return true;
+                    default: // any other ctrl
+                        Console.WriteLine($"<CTRL {ctrlType}: DEFAULT>");
+                        return false;
                 }
-                return true;
             }
+
 
 
             /// <summary>

@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Отладка": {
+      "commandName": "Project"
+    },
+    "Консоль": {
+      "commandName": "Project",
+      "commandLineArgs": "--debug"
+    }
+  }
+}

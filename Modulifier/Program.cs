@@ -33,9 +33,16 @@ namespace Modulifier
         {
             if (Utility.isDebugMode) Utility.ConsoleControl.InitConsole();
 
+            Console.WriteLine("\n-- Early Init --\nEnabling visual styles...");
             Application.EnableVisualStyles();
+
+            Console.WriteLine("Initializing compatible text rendering...");
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Console.WriteLine("Initializing high DPI mode...");
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
+
+            Console.WriteLine();
 
             return new();
         }
