@@ -11,11 +11,9 @@ Python PIP GUI. Lets you install a bunch of packages in just a few mouse clicks.
 * Update pip.
 * Run other commands using the GUI.
 
-**Planned Release**: Surely before New Year, i think i can release a beta on December 25.
-
 **Current Progress**:
 - [x] GUI
-- [ ] pip check
+- [x] pip check
 - [ ] Action
 
 ## Story
