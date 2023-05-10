@@ -58,4 +58,8 @@
 	<ItemGroup>
 	  <Using Include="System.ComponentModel" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="etc\" />
+	</ItemGroup>
 </Project>

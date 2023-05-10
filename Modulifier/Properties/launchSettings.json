@@ -6,6 +6,12 @@
     "Консоль": {
       "commandName": "Project",
       "commandLineArgs": "--debug"
+    },
+    "Без Python": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "PATH": "C:\\Program Files (x86)\\VMware\\VMware Workstation\\bin\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\Common Files\\Acronis\\SnapAPI\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Users\\Марсель\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Марсель\\.dotnet\\tools"
+      }
     }
   }
 }

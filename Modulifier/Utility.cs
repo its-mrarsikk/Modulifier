@@ -23,10 +23,17 @@ namespace Modulifier
             new("stop-install", new(@".\assets\stop_install.png"))
         });
 
-        internal static bool isDebugMode;
+        private static bool isDebugMode;
 
         internal const string DEFAULT_EXCEPTION_INSTRUCTION =
             "There is a log file in the logs folder.\nPlease follow there and get the latest error log, and share it in a GitHub issue.\nYou can see the links in the Main Menu.\nIf you can't get to the Main Menu, please go to github.com/its-mrarsikk/modulifier/issues/new to create an issue. Thank you.";
+
+        internal static bool IsDebugMode { get => isDebugMode; set 
+            {
+                isDebugMode = value;
+                if (value) ConsoleControl.InitConsole();
+            } 
+        }
 
         internal static Process? OpenUrl(string url) => Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
 
@@ -37,48 +44,17 @@ namespace Modulifier
                 bool exists = true;
                 try
                 {
-                    Process.Start(new ProcessStartInfo { FileName = fileName, UseShellExecute = false, CreateNoWindow = true });
+                    string[] start = fileName.Split(' ', 2);
+                    Process.Start(new ProcessStartInfo { FileName = start[0], Arguments = start.Length > 1 ? start[1] : string.Empty, UseShellExecute = false, CreateNoWindow = true });
                 }
-                catch (Win32Exception) { exists = false; }
+                catch (Win32Exception e)
+                { 
+                    exists = false; Console.WriteLine($"seeking for {fileName} using process.start. failed to start:\n{DetailsFromException(e, string.Empty)}"); 
+                }
                 return exists;
             }
 
             return GetFullPath(fileName) != null;
-        }
-
-        internal static string GetHighestVersion(string directory, string extension, string[] cutStart, string[] cutEnd)
-        // THIS METHOD IS WRITTEN 95% BY AI.
-        {
-            string highestVersion = "";
-            int[] version = new int[3] { 0, 0, 0 };
-
-            foreach (string file in Directory.GetFiles(directory.ToLower(), extension.ToLower()))
-            {
-                string filename = file.ToLower();
-                foreach (string startString in cutStart)
-                {
-                    filename = filename.Replace(startString.ToLower(), "");
-                }
-                foreach (string endString in cutEnd)
-                {
-                    filename = filename.Replace(endString.ToLower(), "");
-                }
-                string[] parts = filename.Split('.')[0].Split('_')[0].Split('-')[0].Split('.');
-
-                int i = 0;
-                foreach (string part in parts)
-                {
-                    int v = int.Parse(part);
-                    if (v > version[i])
-                    {
-                        version[i] = v;
-                        highestVersion = file;
-                    }
-                    i++;
-                }
-            }
-
-            return highestVersion;
         }
 
         internal static string? GetFullPath(string fileName)
@@ -87,8 +63,7 @@ namespace Modulifier
             {
                 return Path.GetFullPath(fileName);
             }
-            string? values = Environment.GetEnvironmentVariable("PATH");
-#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
+            string values = Environment.GetEnvironmentVariable("PATH") ?? string.Empty;
             foreach (var path in values.Split(Path.PathSeparator))
             {
                 var fullPath = Path.Combine(path, fileName);
@@ -97,7 +72,6 @@ namespace Modulifier
                     return fullPath;
                 }
             }
-#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
             return null;
         }
 

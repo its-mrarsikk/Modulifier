@@ -8,30 +8,29 @@ namespace Modulifier
         [STAThread]
         private static void Main(string[] args)
         {
+            Bootstrap();
             MainForm? f = null;
 
-            try
+            AppDomain.CurrentDomain.UnhandledException += delegate (object s, UnhandledExceptionEventArgs e)
             {
-                if (args.Length > 0)
-                {
-                    Utility.isDebugMode = args[0].ToLower() == "--debug" || args[0].ToLower() == "-d";
-                }
-
-                f = Bootstrap();
-
-                Application.Run(f);
-            }
-            catch (Exception e)
-            {
-                f ??= new();
                 DetailsMessageBox.Show(f, "Unexpected error", "Modulifier met an unexpected error.\nPlease go to the details to learn more.",
-                    Utility.DetailsFromException(e, Utility.DEFAULT_EXCEPTION_INSTRUCTION), new("./assets/error.png"));
+            Utility.DetailsFromException((Exception)e.ExceptionObject, Utility.DEFAULT_EXCEPTION_INSTRUCTION), Utility.GetFromAssetsOrEmpty("error"));
+            };
+
+            f ??= new();
+            if (args.Length > 0)
+            {
+                Utility.IsDebugMode = args[0].ToLower() == "--debug" || args[0].ToLower() == "-d"; // check cmd args
             }
+
+            f = new();
+
+            Application.Run(f);
         }
 
-        private static MainForm Bootstrap()
+        private static void Bootstrap()
         {
-            if (Utility.isDebugMode) Utility.ConsoleControl.InitConsole();
+            if (Utility.IsDebugMode) Utility.ConsoleControl.InitConsole();
 
             Console.WriteLine("\n-- Early Init --\nEnabling visual styles...");
             Application.EnableVisualStyles();
@@ -43,8 +42,6 @@ namespace Modulifier
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 
             Console.WriteLine();
-
-            return new();
         }
     }
 }
