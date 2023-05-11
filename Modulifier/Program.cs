@@ -13,7 +13,7 @@ namespace Modulifier
 
             AppDomain.CurrentDomain.UnhandledException += delegate (object s, UnhandledExceptionEventArgs e)
             {
-                DetailsMessageBox.Show(f, "Unexpected error", "Modulifier met an unexpected error.\nPlease go to the details to learn more.",
+                DetailsMessageBox.Show(null, "Unexpected error", "Modulifier met an unexpected error.\nPlease go to the details to learn more.",
             Utility.DetailsFromException((Exception)e.ExceptionObject, Utility.DEFAULT_EXCEPTION_INSTRUCTION), Utility.GetFromAssetsOrEmpty("error"));
             };
 

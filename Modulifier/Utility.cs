@@ -37,21 +37,26 @@ namespace Modulifier
 
         internal static Process? OpenUrl(string url) => Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
 
-        internal static bool ExistsOnPath(string fileName, bool useProcessStart = false)
+        internal static async Task<bool> ExistsOnPath(string fileName, bool useProcessStart = false)
         {
             if (useProcessStart)
             {
-                bool exists = true;
                 try
                 {
-                    string[] start = fileName.Split(' ', 2);
-                    Process.Start(new ProcessStartInfo { FileName = start[0], Arguments = start.Length > 1 ? start[1] : string.Empty, UseShellExecute = false, CreateNoWindow = true });
+                    var start = fileName.Split(' ', 2);
+                    var proc = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = start[0], Arguments = start.Length > 1 ? start[1] : string.Empty,
+                        UseShellExecute = false, CreateNoWindow = true
+                    });
+                    if (proc != null)
+                    {
+                        await proc.WaitForExitAsync();
+                        return proc.ExitCode == 0;
+                    }
+                    return false;
                 }
-                catch (Win32Exception e)
-                { 
-                    exists = false; Console.WriteLine($"seeking for {fileName} using process.start. failed to start:\n{DetailsFromException(e, string.Empty)}"); 
-                }
-                return exists;
+                catch (Exception) { return false; }
             }
 
             return GetFullPath(fileName) != null;

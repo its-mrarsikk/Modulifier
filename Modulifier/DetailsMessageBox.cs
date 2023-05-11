@@ -1,4 +1,5 @@
-﻿using System.Drawing.Imaging;
+﻿using Newtonsoft.Json.Serialization;
+using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -23,7 +24,7 @@ namespace Modulifier
         /// <param name="text">Text, shown in the main box.</param>
         /// <param name="details">Text, shown in the details box.</param>
         /// <param name="icon">Icon, shown in the main box.</param>
-        public DetailsMessageBox(IWin32Window owner, string caption, string text, string details, Bitmap? icon = null)
+        public DetailsMessageBox(IWin32Window? owner, string caption, string text, string details, Bitmap? icon = null)
         {
             InitializeComponent();
 
@@ -31,7 +32,7 @@ namespace Modulifier
             msgText.Text = text;
             this.details.Text = details;
             this.icon.Image = icon;
-            Owner = (Form)owner;
+            Owner = owner == null ? null : (Form)owner;
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace Modulifier
         /// <param name="icon">Icon, shown in the main box.</param>
         /// <returns>Clicked button. Close (red X, system menu, ALT+F4, Quit): <see cref="DialogResult">DialogResult</see>.<see cref="DialogResult.Cancel">Cancel</see>, OK: <see cref="DialogResult">DialogResult</see>.<see cref="DialogResult.OK">OK</see>.</returns>
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="DetailsMessageBox">DetailsMessageBox</see> is already shown.</exception>
-        public static DialogResult ShowDialog(IWin32Window owner, string caption, string text, string details, Bitmap icon)
+        public static DialogResult ShowDialog(IWin32Window? owner, string caption, string text, string details, Bitmap icon)
         {
             var d = new DetailsMessageBox(owner, caption, text, details, icon);
             var r = d.ShowDialog();
@@ -62,7 +63,7 @@ namespace Modulifier
         /// <param name="icon">Icon, shown in the main box.</param>
         /// <returns>Clicked button. Close (red X, system menu, ALT+F4, Quit): <see cref="DialogResult">DialogResult</see>.<see cref="DialogResult.Cancel">Cancel</see>, OK: <see cref="DialogResult">DialogResult</see>.<see cref="DialogResult.OK">OK</see>.</returns>
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="DetailsMessageBox">DetailsMessageBox</see> is already shown.</exception>
-        public static DialogResult Show(IWin32Window owner, string caption, string text, string details, Bitmap icon) =>
+        public static DialogResult Show(IWin32Window? owner, string caption, string text, string details, Bitmap icon) =>
             ShowDialog(owner, caption, text, details, icon);
 
         /// <summary>
@@ -82,11 +83,11 @@ namespace Modulifier
         /// <param name="owner">New owner.</param>
         /// <returns>Clicked button. Close (red X, system menu, ALT+F4, Quit): <see cref="DialogResult">DialogResult</see>.<see cref="DialogResult.Cancel">Cancel</see>, OK: <see cref="DialogResult">DialogResult</see>.<see cref="DialogResult.OK">OK</see>.</returns>
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="DetailsMessageBox">DetailsMessageBox</see> is already shown.</exception>
-        new public DialogResult ShowDialog(IWin32Window owner)
+        new public DialogResult ShowDialog(IWin32Window? owner)
         {
             if (Visible) throw new InvalidOperationException("This instance of DetailsMessageBox is already visible.");
 
-            Owner = (Form)owner;
+            Owner = owner == null ? null : (Form)owner;
             return ShowDialog();
         }
 
@@ -103,9 +104,9 @@ namespace Modulifier
         /// <returns>Clicked button. Close (red X, system menu, ALT+F4, Quit): <see cref="DialogResult">DialogResult</see>.<see cref="DialogResult.Cancel">Cancel</see>, OK: <see cref="DialogResult">DialogResult</see>.<see cref="DialogResult.OK">OK</see>.</returns>
         /// <param name="owner">New owner.</param>
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="DetailsMessageBox">DetailsMessageBox</see> is already shown.</exception>
-        new public DialogResult Show(IWin32Window owner) => ShowDialog(owner);
+        new public DialogResult Show(IWin32Window? owner) => ShowDialog(owner);
 
-        public static void Test(Form parent, Bitmap? image = null)
+        public static void Test(IWin32Window? parent, Bitmap? image = null)
         {
             Show(parent, "Caption", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non sagittis tellus,\r\nvel suscipit orci. Nulla et sapien augue. Donec tristique tellus quis turpis maximus.",
                 "\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus felis erat, tristique nec ornare at, eleifend non augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent et est sed tortor pulvinar eleifend vitae quis diam. Ut ut purus lectus. Mauris sit amet rhoncus erat. Maecenas ornare justo et elit lobortis finibus. Suspendisse potenti. Pellentesque hendrerit diam quis suscipit aliquam. Duis quis nunc pharetra, molestie metus non, suscipit orci. Quisque ultricies eu metus sit amet dignissim. Integer facilisis malesuada leo, quis ornare ante egestas in.\r\n\r\nMauris ut sagittis turpis, suscipit imperdiet est. Aliquam erat volutpat. Donec pharetra lacinia lorem, malesuada iaculis turpis elementum id. Donec tincidunt vel nisi sed sodales. Suspendisse fermentum lectus in nisi bibendum ornare. Maecenas pulvinar augue dui, eu varius enim blandit ut. Nullam scelerisque felis ex, eget posuere orci sodales et. Donec sit amet neque tellus. Integer non tincidunt magna, id ullamcorper eros. Maecenas ut nisl ante. Quisque porttitor volutpat neque id faucibus. Nulla facilisi.\r\n\r\nFusce lobortis nunc accumsan bibendum accumsan. Sed et blandit tortor, vel gravida elit. Nulla ut pretium leo, imperdiet tincidunt lacus. Phasellus sit amet ipsum tempus, ornare dolor vitae, consectetur odio. Nam varius pharetra ex eu congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc efficitur ac erat et elementum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris ornare blandit risus, a tincidunt lacus. Curabitur auctor augue quis dignissim fringilla. Morbi non ligula et turpis lobortis tempor sed nec quam. Curabitur id semper sapien. Fusce convallis ante in risus euismod finibus. Nullam ultrices ullamcorper purus, ac lobortis risus blandit id. Donec lorem nulla, dictum semper diam vel, vestibulum auctor ipsum. Proin sed nisl lectus.\r\n\r\nCurabitur quis mattis purus. Donec at accumsan lectus. Praesent lacinia ex nunc, id condimentum dolor aliquam ac. Donec nec eros tristique, gravida dui sed, gravida augue. Etiam eu viverra leo. Integer tincidunt et sem a imperdiet. Sed ornare odio ac nisl blandit tempor. Proin at nisi a nisi sodales malesuada.\r\n\r\nNullam tempus libero maximus nisl ultrices, in tristique purus elementum. Vestibulum leo ipsum, interdum in felis in, blandit elementum quam. Morbi tempus elit a cursus porta. Morbi vel eros eget felis accumsan varius. Sed ac iaculis arcu. Nam cursus urna ac arcu blandit feugiat. Duis vel nulla vel sem viverra convallis pellentesque ac massa. Donec orci urna, viverra bibendum cursus vel, tincidunt in nulla. Praesent varius suscipit volutpat. In elementum semper dapibus.",
@@ -125,7 +126,7 @@ namespace Modulifier
                 .AppendLine($"Text: {msgText.Text}")
                 .AppendLine($"Icon: {icon.ImageLocation}")
                 .AppendLine($"Details text: {details}")
-                .AppendLine($"Owner: {Owner}")
+                .AppendLine($"Owner: {(Owner == null ? "<Top-level window>" : Owner.ToString())}") // reference on last line
                 .ToString();
 
         }
@@ -183,7 +184,7 @@ namespace Modulifier
 
         private void okButton_Click(object sender, EventArgs e) => OnOKClick();
 
-        private void details_LinkClicked(object sender, LinkClickedEventArgs e) => Utility.OpenUrl(e.LinkText);
+        private void details_LinkClicked(object sender, LinkClickedEventArgs e) => Utility.OpenUrl(e.LinkText ?? "null");
 
         private void copyBtn_Click(object sender, EventArgs e)
         {
@@ -205,4 +206,13 @@ namespace Modulifier
  * In the Properties window, find Size property.
  * Set its value to 448; 465.
  * After you finish previewing the expanded window, return the Size property back to 448; 215. (IMPORTANT)
+*/
+
+/* now, reference to the owner line in ToString():
+ * One day, a developer goes into a bar, and sees a hot large codebase at a table.
+ * The developer sits nearby the codebase and starts flirting.
+ * The codebase and the developer go to the developer's home.
+ * The codebase takes off its clothes, and the developer sees }]}, ]]], }}}, }); and )})};.
+ * The developer rushes outside of his house out of fear.
+ * THE END
 */

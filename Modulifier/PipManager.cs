@@ -18,14 +18,15 @@ namespace Modulifier
         internal async static Task<Tuple<bool, bool>> CheckPipPresence(Form? dialogParent)
         {
             dialogParent ??= MainForm.ActiveForm;
-            if (!Utility.ExistsOnPath("python.exe --version", true)) // python is not installed or not in path.
+            if (!await Utility.ExistsOnPath("python.exe --version", true)) // python is not installed or not in path.
             {
                 MessageBox.Show(dialogParent, PYTHON_NOT_FOUND_ERROR, PYTHON_NOT_FOUND_ERROR_TITLE,
                     MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 isPythonPresent = false;
                 isPipPresent = false;
+                return new(isPythonPresent, isPipPresent);
             }
-            if (!Utility.ExistsOnPath("python -m pip --version", true))
+            if (!await Utility.ExistsOnPath("python -m pip --version", true))
             {
                 isPythonPresent = true;
                 DialogResult pipinstalldialogresult = MessageBox.Show(dialogParent, PIP_NOT_FOUND_ERROR, PIP_NOT_FOUND_ERROR_TITLE,
@@ -41,6 +42,7 @@ namespace Modulifier
                     else isPipPresent = true;
                 }
                 else isPipPresent = false;
+                return new(isPythonPresent, isPipPresent);
             }
             isPythonPresent = true;
             isPipPresent = true;
